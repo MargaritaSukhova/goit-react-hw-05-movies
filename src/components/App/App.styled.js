@@ -5,5 +5,7 @@ export const Container = styled.div`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  color: #010101;
+  color: #292828;
+  background: linear-gradient(to top, #ffffff, #ece9e6);
+  font-family: 'Oxygen', sans-serif;
 `;
