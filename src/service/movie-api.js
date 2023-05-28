@@ -8,3 +8,9 @@ export const getTrendingMovies = async () => {
   const response = await axios.get(`${endpoint}?api_key=${KEY}`);
   return response.data.results;
 };
+
+export const getMovieById = async movieId => {
+  const endpoint = '/movie';
+  const response = await axios.get(`${endpoint}/${movieId}?api_key=${KEY}`);
+  return response.data;
+};
