@@ -4,7 +4,6 @@ import { Title } from './TrendingList.styled';
 
 const TrendingList = ({ movies }) => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <ul>
