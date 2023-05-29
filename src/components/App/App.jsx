@@ -1,11 +1,12 @@
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Layout from 'components/Layout/Layout';
-import Home from 'pages/Home';
-import Movies from 'pages/Movies';
-import MovieDetails from 'pages/MovieDetails';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const Cast = lazy(() => import('components/Cast/Cast'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 export const App = () => {
   return (
@@ -21,9 +22,3 @@ export const App = () => {
     </Routes>
   );
 };
-
-// '/' - компонент Home, домашняя страница со списком популярных кинофильмов.
-// '/movies' - компонент Movies, страница поиска фильмов по ключевому слову.
-// '/movies/:movieId' - компонент MovieDetails, страница с детальной информацией о кинофильме.
-// /movies/:movieId/cast - компонент Cast, информация о актерском составе. Рендерится на странице MovieDetails.
-// /movies/:movieId/reviews - компонент Reviews, информация об обзорах. Рендерится на странице MovieDetails.

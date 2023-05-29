@@ -6,6 +6,16 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   color: #292828;
-  background: linear-gradient(to top, #ffffff, #ece9e6);
+  background-color: #ece9e6;
+  font-family: 'Oxygen', sans-serif;
+`;
+
+export const ContainerMovie = styled.div`
+  padding: 30px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #292828;
+  background-color: #ece9e6;
   font-family: 'Oxygen', sans-serif;
 `;

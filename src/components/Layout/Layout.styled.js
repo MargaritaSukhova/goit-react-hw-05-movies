@@ -17,7 +17,6 @@ export const Nav = styled.nav`
   justify-content: start;
   align-items: center;
   font-size: 24px;
-  text-transform: uppercase;
   gap: 16px;
 `;
 

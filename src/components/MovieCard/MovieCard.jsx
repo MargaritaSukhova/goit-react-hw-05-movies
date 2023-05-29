@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { InfoWrapper, MovieWrapper, Poster } from './MovieCard.styled';
+import NoImage from 'images/no-image.jpg';
 
 const MovieCard = ({ movie }) => {
   const {
@@ -16,19 +18,40 @@ const MovieCard = ({ movie }) => {
   return (
     <MovieWrapper>
       <Poster
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : NoImage
+        }
         alt={original_title}
       />
       <InfoWrapper>
-        <h2>{`${original_title} (${year})`}</h2>
+        <h2>{`${original_title ? original_title : 'N/a'} ${
+          year ? year : ''
+        }`}</h2>
         <p>User score: {userScore}%</p>
         <h3>Overview</h3>
-        <p>{overview}</p>
+        <p>{overview ? overview : 'N/a'}</p>
         <h4>Genres</h4>
-        <p>{movieGenres}</p>
+        <p>{movieGenres ? movieGenres : 'N/a'}</p>
       </InfoWrapper>
     </MovieWrapper>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })
+    ),
+    vote_average: PropTypes.number,
+    release_date: PropTypes.string,
+  }).isRequired,
 };
 
 export default MovieCard;

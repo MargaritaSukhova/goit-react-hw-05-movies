@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { getMovieById } from 'service/movie-api';
-import { Container } from 'components/App/App.styled';
+import { ContainerMovie } from 'components/App/App.styled';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 import AditionalInfo from 'components/AditionalInfo/AditionalInfo';
 
@@ -11,6 +11,7 @@ const MovieDetails = () => {
 
   const { movieId } = useParams();
   const location = useLocation();
+  const backLickLoctionRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     getMovieById(movieId).then(setMovie);
@@ -19,14 +20,16 @@ const MovieDetails = () => {
   if (!movie) return;
 
   return (
-    <Container>
-      <Link to={location.state?.from ?? '/'}>
+    <ContainerMovie>
+      <Link to={backLickLoctionRef.current}>
         <GoBackBtn />
       </Link>
       <MovieCard movie={movie} />
       <AditionalInfo movie={movie} />
-      <Outlet />
-    </Container>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </ContainerMovie>
   );
 };
 
