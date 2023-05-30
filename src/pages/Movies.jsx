@@ -15,7 +15,7 @@ const Movies = () => {
       return;
     }
     getMoviesByQuery(query).then(setMovies);
-  }, [query, searchParams]);
+  }, [query]);
 
   const onSubmit = query => {
     setSeachParams({ query });
